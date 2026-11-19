@@ -1,7 +1,0 @@
-La parte de "administrar ciudadano" del proyecto, unida con el resto
-agrego:
-controlador/CiudadanoControlador.java	Nuevo
-vista/CiudadanoVista.java	Nuevo	
-modelo/Ciudadano.java	(lo modifique un poco)
-modelo/Llamada.java	(lo modifique a lo que pedia)
-Ecu911.java	(Modificado)	

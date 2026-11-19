@@ -2,11 +2,7 @@ package ecu911.modelo;
 
 import java.util.Objects;
 
-/**
- * Operador del ECU 911 que atiende llamadas y redacta notas de seguimiento.
- * Su código ({@code OP-01}, {@code OP-02}, ...) se genera de forma
- * secuencial con un atributo estático.
- */
+
 public class Operador extends Persona {
 
     /** Contador compartido por todos los operadores para generar el código. */

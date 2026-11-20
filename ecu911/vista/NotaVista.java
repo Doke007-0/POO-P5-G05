@@ -15,7 +15,7 @@ public class NotaVista {
 
     /**
      * Constructor de la vista.
-
+    */
     public NotaVista(Scanner scanner) {
         this.scanner = scanner;
     }

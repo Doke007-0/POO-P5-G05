@@ -7,6 +7,8 @@ import java.util.Scanner;
 
 /**
  * Vista para la interfaz de consola del Menú 4 (Notas de seguimiento).
+ *
+ * @author Alfonso Beltran
  */
 public class NotaVista {
     private Scanner scanner;

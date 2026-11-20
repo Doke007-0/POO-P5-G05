@@ -20,9 +20,7 @@ public class OperadorControlador {
     private List<Operador> listaOperadores;
     private List<Llamada> listaLlamadas;
 
-    /**
-     * Constructor del controlador.
-    */
+    //Constructor del controlador.
     public OperadorControlador(
             Scanner scanner,
             List<Operador> listaOperadores,
@@ -33,9 +31,8 @@ public class OperadorControlador {
         this.listaLlamadas = listaLlamadas;
     }
 
-    /**
-     * Inicia el menú de administración de operadores.
-    */
+    //Inicia el menú de administración de operadores.
+    Inicia el menú de administración de operadores.
     public void iniciarMenuOperadores() {
 
         boolean regresar = false;
@@ -70,9 +67,7 @@ public class OperadorControlador {
         }
     }
 
-    /**
-     * Registra un nuevo operador después de validar sus datos.
-    */
+    //Registra un nuevo operador después de validar sus datos.
     private void agregarOperador() {
 
         System.out.println("\n[Administrar operadores > Agregar operador]");
@@ -153,9 +148,7 @@ public class OperadorControlador {
         vista.esperarEnter();
     }
 
-    /**
-     * Elimina un operador si no tiene llamadas registradas.
-    */
+    //Elimina un operador si no tiene llamadas registradas.
     private void eliminarOperador() {
 
         if (listaOperadores.isEmpty()) {

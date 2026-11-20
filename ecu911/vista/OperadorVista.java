@@ -10,16 +10,15 @@ import java.util.Scanner;
 public class OperadorVista {
     private Scanner scanner;
 
-    /**
-     * Constructor de la vista.
-     */
+    
+    //Constructor de la vista.
+     
     public OperadorVista(Scanner scanner) {
         this.scanner = scanner;
     }
 
-    /**
-     * Muestra el listado de operadores registrados.
-     */
+    //Muestra el listado de operadores registrados.
+     
     public void mostrarOperadores(
             List<Operador> operadores,
             Map<String, Integer> llamadasPorOperador) {
@@ -49,9 +48,9 @@ public class OperadorVista {
         }
     }
 
-    /**
-     * Muestra el menú de administración de operadores.
-     */
+    
+    //Muestra el menú de administración de operadores.
+     
     public int mostrarMenuOperadores() {
         System.out.println("\n¿Qué accion desea realizar?");
         System.out.println("[1] Agregar un nuevo operador");

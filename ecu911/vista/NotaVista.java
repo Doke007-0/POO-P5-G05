@@ -11,8 +11,11 @@ import java.util.Scanner;
 public class NotaVista {
     private Scanner scanner;
 
-    public NotaVista() {
-        this.scanner = new Scanner(System.in);
+    /**
+     * Constructor de la vista.
+
+    public NotaVista(Scanner scanner) {
+        this.scanner = scanner;
     }
 
     public String pedirCodigoLlamada() {
@@ -24,17 +27,17 @@ public class NotaVista {
 
     public void mostrarNotasDeLlamada(String codigoLlamada, List<NotaSeguimiento> notas) {
         System.out.println("\nNotas de la llamada " + codigoLlamada + " (Ordenadas desde la más reciente):");
-        System.out.println("FECHA Y HORA     | OPERADOR        | NOTA");
+        System.out.printf("%-18s | %-25s | %s%n", "FECHA Y HORA", "OPERADOR", "NOTA");
 
         if (notas.isEmpty()) {
             System.out.println("No hay notas registradas para esta llamada.");
         } else {
-            // Se recorre al revés para mostrar primero las notas más recientes[cite: 13]
             for (int i = notas.size() - 1; i >= 0; i--) {
                 NotaSeguimiento n = notas.get(i);
-                // Si Persona tiene getNombres() y getApellidos() en lugar de getNombreCompleto(), lo armamos aquí:
-                String nombreOp = n.getOperador().getNombres() + " " + n.getOperador().getApellidos();
-                System.out.println(n.getFechaHoraFormateada() + " | " + nombreOp + " | " + n.getTexto());
+                System.out.printf("%-18s | %-25s | %s%n",
+                        n.getFechaHoraFormateada(),
+                        n.getOperador().getNombreCompleto(),
+                        n.getTexto());
             }
         }
     }
@@ -45,7 +48,7 @@ public class NotaVista {
         System.out.println("[2] Regresar al Menú Principal");
         System.out.print("> Seleccione una opción (1-2): ");
         try {
-            return Integer.parseInt(scanner.nextLine());
+            return Integer.parseInt(scanner.nextLine().trim());
         } catch (NumberFormatException e) {
             return -1;
         }
@@ -55,12 +58,11 @@ public class NotaVista {
         System.out.println("\n[Notas de seguimiento > Añadir nota]");
         System.out.println("Seleccione el operador que registra la nota:");
         for (int i = 0; i < operadores.size(); i++) {
-            Operador op = operadores.get(i);
-            System.out.println("[" + (i + 1) + "] " + op.getNombres() + " " + op.getApellidos());
+            System.out.println("[" + (i + 1) + "] " + operadores.get(i).getNombreCompleto());
         }
         System.out.print("Seleccione el número de operador: ");
         try {
-            return Integer.parseInt(scanner.nextLine());
+            return Integer.parseInt(scanner.nextLine().trim());
         } catch (NumberFormatException e) {
             return -1;
         }
@@ -73,11 +75,14 @@ public class NotaVista {
     }
 
     public void mostrarExitoNota(NotaSeguimiento nota) {
-        String nombreOp = nota.getOperador().getNombres() + " " + nota.getOperador().getApellidos();
         System.out.println("\nGUARDANDO NOTA...");
         System.out.println("¡Éxito! La nota ha sido guardada en la llamada " + nota.getLlamada().getCodigo() + ":");
         System.out.println("-> Registro: " + nota.getFechaHoraFormateada());
-        System.out.println("-> Operador: " + nombreOp);
+        System.out.println("-> Operador: " + nota.getOperador().getNombreCompleto());
+        esperarEnter();
+    }
+
+    public void esperarEnter() {
         System.out.print("\nPresione ENTER para actualizar y volver a Notas de seguimiento...");
         scanner.nextLine();
     }
@@ -85,4 +90,4 @@ public class NotaVista {
     public void mostrarMensajeError(String mensaje) {
         System.out.println("¡Error! " + mensaje);
     }
-}Carpeta vista
+}

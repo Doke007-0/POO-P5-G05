@@ -1,5 +1,7 @@
 package ecu911.controlador;
 
+import ecu911.excepcion.DatoInvalidoException;
+import ecu911.excepcion.LlamadaNoEncontradaException;
 import ecu911.modelo.Llamada;
 import ecu911.modelo.NotaSeguimiento;
 import ecu911.modelo.Operador;
@@ -9,9 +11,12 @@ import ecu911.vista.NotaVista;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Controlador que maneja las operaciones del Menú 4 (Notas de seguimiento).
+ *
+ * @author Alfonso Beltran
  */
 public class NotaControlador {
     private NotaVista vista;
@@ -19,19 +24,36 @@ public class NotaControlador {
     private List<Llamada> listaLlamadas;
     private List<Operador> listaOperadores;
 
-    public NotaControlador(List<NotaSeguimiento> listaNotas, List<Llamada> listaLlamadas, List<Operador> listaOperadores) {
-        this.vista = new NotaVista();
+    /**
+     * Constructor del controlador de notas.
+     *
+     * @param scanner         lector de entrada compartido del sistema
+     * @param listaNotas      lista global de notas de seguimiento
+     * @param listaLlamadas   lista global de llamadas registradas
+     * @param listaOperadores lista global de operadores registrados
+     */
+    public NotaControlador(
+            Scanner scanner,
+            List<NotaSeguimiento> listaNotas,
+            List<Llamada> listaLlamadas,
+            List<Operador> listaOperadores) {
+        this.vista = new NotaVista(scanner);
         this.listaNotas = listaNotas;
         this.listaLlamadas = listaLlamadas;
         this.listaOperadores = listaOperadores;
     }
 
+    /**
+     * Inicia el menú de administración de notas de seguimiento.
+     */
     public void iniciarMenuNotas() {
         String codigoBuscado = vista.pedirCodigoLlamada();
-        Llamada llamadaEncontrada = buscarLlamadaPorCodigo(codigoBuscado);
+        Llamada llamadaEncontrada;
 
-        if (llamadaEncontrada == null) {
-            vista.mostrarMensajeError("No se encontró ninguna llamada con el código " + codigoBuscado);
+        try {
+            llamadaEncontrada = buscarLlamadaPorCodigo(codigoBuscado);
+        } catch (LlamadaNoEncontradaException e) {
+            vista.mostrarMensajeError(e.getMessage());
             return;
         }
 
@@ -51,10 +73,16 @@ public class NotaControlador {
                     break;
                 default:
                     vista.mostrarMensajeError("Opción fuera de rango. Ingrese 1 o 2.");
+                    break;
             }
         }
     }
 
+    /**
+     * Gestiona el proceso de registrar una nueva nota en una llamada específica.
+     *
+     * @param llamada llamada a la que se asociará la nota
+     */
     private void agregarNuevaNota(Llamada llamada) {
         if (listaOperadores.isEmpty()) {
             vista.mostrarMensajeError("No hay operadores registrados en el sistema.");
@@ -63,11 +91,14 @@ public class NotaControlador {
 
         Operador operadorSeleccionado = null;
         while (operadorSeleccionado == null) {
-            int indiceOp = vista.pedirOperador(listaOperadores);
-            if (indiceOp >= 1 && indiceOp <= listaOperadores.size()) {
+            try {
+                int indiceOp = vista.pedirOperador(listaOperadores);
+                if (indiceOp < 1 || indiceOp > listaOperadores.size()) {
+                    throw new DatoInvalidoException("Número de operador inválido. Seleccione una opción de la lista.");
+                }
                 operadorSeleccionado = listaOperadores.get(indiceOp - 1);
-            } else {
-                vista.mostrarMensajeError("Número de operador inválido.");
+            } catch (DatoInvalidoException e) {
+                vista.mostrarMensajeError(e.getMessage());
             }
         }
 
@@ -76,11 +107,14 @@ public class NotaControlador {
         boolean textoValido = false;
 
         while (!textoValido) {
-            textoNota = vista.pedirTextoNota(fechaActualStr);
-            if (Validador.noVacio(textoNota)) {
+            try {
+                textoNota = vista.pedirTextoNota(fechaActualStr);
+                if (!Validador.noVacio(textoNota)) {
+                    throw new DatoInvalidoException("El texto de la nota no puede estar vacío.");
+                }
                 textoValido = true;
-            } else {
-                vista.mostrarMensajeError("El texto de la nota no puede estar vacío.");
+            } catch (DatoInvalidoException e) {
+                vista.mostrarMensajeError(e.getMessage());
             }
         }
 
@@ -89,15 +123,28 @@ public class NotaControlador {
         vista.mostrarExitoNota(nuevaNota);
     }
 
-    private Llamada buscarLlamadaPorCodigo(String codigo) {
+    /**
+     * Busca una llamada por su código o lanza una excepción si no existe.
+     *
+     * @param codigo código de la llamada (ej. LL-001)
+     * @return objeto Llamada encontrado
+     * @throws LlamadaNoEncontradaException si el código no coincide con ninguna llamada
+     */
+    private Llamada buscarLlamadaPorCodigo(String codigo) throws LlamadaNoEncontradaException {
         for (Llamada ll : listaLlamadas) {
             if (ll.getCodigo().equalsIgnoreCase(codigo)) {
                 return ll;
             }
         }
-        return null;
+        throw new LlamadaNoEncontradaException("No se encontró ninguna llamada con el código " + codigo + ".");
     }
 
+    /**
+     * Filtra todas las notas registradas que pertenecen a una llamada.
+     *
+     * @param llamada llamada a consultar
+     * @return lista de notas asociadas a esa llamada
+     */
     private List<NotaSeguimiento> obtenerNotasPorLlamada(Llamada llamada) {
         List<NotaSeguimiento> resultado = new ArrayList<>();
         for (NotaSeguimiento nota : listaNotas) {

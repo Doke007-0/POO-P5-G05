@@ -5,7 +5,6 @@ import java.util.Objects;
 
 public class Operador extends Persona {
 
-    /** Contador compartido por todos los operadores para generar el código. */
     private static int contador = 0;
 
     private final String codigo;

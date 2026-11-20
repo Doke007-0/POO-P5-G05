@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 
 /**
  * Representa una nota de seguimiento asociada a una llamada de emergencia.
+ *
+ * @author Alfonso Beltran
  */
 public class NotaSeguimiento {
     private static int contadorNotas = 1;

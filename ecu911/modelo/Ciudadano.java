@@ -6,49 +6,34 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * Ciudadano que ha realizado una llamada de emergencia. Se identifica por su
- * cédula de identidad (10 dígitos) y se crea automáticamente al registrar
- * una llamada.
- */
+//Ciudadano que ha realizado una llamada de emergencia. Se identifica por su
+ 
 public class Ciudadano extends Persona {
 
     private String cedula;
     private final List<Llamada> llamadas;
     
-    /**
-     * Crea un ciudadano.
-     *
-     * @param nombres   nombres del ciudadano
-     * @param apellidos apellidos del ciudadano
-     * @param cedula    cédula de 10 dígitos numéricos, sin guiones
-     */
+    //Crea un ciudadano.
+     
     public Ciudadano(String nombres, String apellidos, String cedula) {
         super(nombres, apellidos);
         this.cedula = cedula;
         this.llamadas = new ArrayList<>();
     }
 
-    /**
-     * Obtiene la cédula.
-     *
-     * @return cédula de identidad
-     */
+    //Obtiene la cédula.
+     
     public String getCedula() {
         return cedula;
     }
 
-    /**
-     * Cambia la cédula.
-     *
-     * @param cedula nueva cédula
-     */
+    //Cambia la cédula.
+     
     public void setCedula(String cedula) {
         this.cedula = cedula;
     }
 
-    //Obtiene el historial de llamadas, devuelve una lista con llamadas
-    //del ciudadano
+    //Obtiene el historial de llamadas
     public List<Llamada> getLlamadas() {
         return Collections.unmodifiableList(llamadas);
     }

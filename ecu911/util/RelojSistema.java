@@ -5,14 +5,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-/**
- * Proporciona la fecha y hora del sistema. Toda fecha de llamadas y notas se
- * obtiene aquí, nunca la ingresa el usuario.
- * <p>
- * Usa la fecha real del equipo por defecto, pero permite fijar un
- * {@link Clock} simulado (útil para pruebas o para la sustentación).
- * </p>
- */
+
+ /**Proporciona la fecha y hora del sistema. Toda fecha de llamadas y notas se
+ obtiene aquí, nunca la ingresa el usuario.
+ **//
 public final class RelojSistema {
 
     /** Formato visible para el usuario: {@code dd/MM/yyyy - HH:mm}. */
@@ -25,11 +21,8 @@ public final class RelojSistema {
         // Clase de utilidad: no se instancia.
     }
 
-    /**
-     * Reemplaza el reloj del sistema (por ejemplo, por uno fijo para pruebas).
-     *
-     * @param nuevoReloj reloj a utilizar
-     */
+    //Reemplaza el reloj del sistema (por ejemplo, por uno fijo para pruebas).
+     
     public static void fijarReloj(Clock nuevoReloj) {
         reloj = nuevoReloj;
     }
@@ -43,21 +36,14 @@ public final class RelojSistema {
         return LocalDateTime.now(reloj);
     }
 
-    /**
-     * Devuelve la fecha actual del sistema (sin hora).
-     *
-     * @return fecha actual
-     */
+    //Devuelve la fecha actual del sistema (sin hora).
+     
     public static LocalDate hoy() {
         return LocalDate.now(reloj);
     }
 
-    /**
-     * Da formato {@code dd/MM/yyyy - HH:mm} a una fecha y hora.
-     *
-     * @param fechaHora valor a formatear
-     * @return texto formateado
-     */
+    //Da formato {@code dd/MM/yyyy - HH:mm} a una fecha y hora.
+    
     public static String formatear(LocalDateTime fechaHora) {
         return fechaHora.format(FORMATO);
     }

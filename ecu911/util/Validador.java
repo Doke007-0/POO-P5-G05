@@ -13,44 +13,28 @@ public final class Validador {
         // Clase de utilidad: no se instancia.
     }
 
-    /**
-     * Indica si un texto contiene exactamente 10 dígitos numéricos.
-     *
-     * @param cedula texto a validar
-     * @return {@code true} si cumple el formato
-     */
+    //Indica si un texto contiene exactamente 10 dígitos numéricos.
+     
     public static boolean esCedulaValida(String cedula) {
         return cedula != null && cedula.matches("\\d{" + LONGITUD_CEDULA + "}");
     }
 
-    /**
-     * Indica si un texto tiene contenido (no es nulo ni solo espacios).
-     *
-     * @param texto texto a validar
-     * @return {@code true} si hay al menos un carácter visible
-     */
+    //Indica si un texto tiene contenido (no es nulo ni solo espacios).
+     
     public static boolean noVacio(String texto) {
         return texto != null && !texto.trim().isEmpty();
     }
 
     /**
      * Validación sencilla de correo: debe tener una arroba y un punto
-     * posterior, sin espacios.
-     *
-     * @param email correo a validar
-     * @return {@code true} si tiene un formato razonable
-     */
+     posterior, sin espacios.**/
+     
     public static boolean esEmailValido(String email) {
         return email != null && email.matches("[^@\\s]+@[^@\\s]+\\.[^@\\s]+");
     }
 
-    /**
-     * Recorta un texto a un largo máximo, útil para tablas de consola.
-     *
-     * @param texto texto original
-     * @param max   largo máximo permitido
-     * @return texto original o recortado con "..." al final
-     */
+    //Recorta un texto a un largo máximo, útil para tablas de consola.
+     
     public static String recortar(String texto, int max) {
         if (texto == null) {
             return "";

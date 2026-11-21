@@ -6,84 +6,56 @@ public abstract class Persona {
     private String nombres;
     private String apellidos;
 
-    /**
-     * Crea una persona.
-     *
-     * @param nombres   nombres (obligatorio)
-     * @param apellidos apellidos (obligatorio)
-     */
+    
+    //Crea una persona.
+    
     protected Persona(String nombres, String apellidos) {
         this.nombres = nombres.trim();
         this.apellidos = apellidos.trim();
     }
 
-    /**
-     * Identificador propio de cada tipo de persona: el código en un operador
-     * y la cédula en un ciudadano (polimorfismo).
-     *
-     * @return 
-     */
+    //Identificador propio de cada tipo de persona: el código en un operador
+     
     public abstract String getIdentificador();
 
-    /**
-     * Obtiene los nombres.
-     *
-     * @return 
-     */
+    //Obtiene los nombres.
+    
     public String getNombres() {
         return nombres;
     }
 
-    /**
-     * Cambia los nombres.
-     *
-     * @param nombres 
-     */
+    //Cambia los nombres.
+     
     public void setNombres(String nombres) {
         this.nombres = nombres.trim();
     }
 
-    /**
-     * Obtiene los apellidos.
-     *
-     * @return 
-     */
+    //Obtiene los apellidos.
+    
     public String getApellidos() {
         return apellidos;
     }
 
-    /**
-     * Cambia los apellidos.
-     *
-     * @param apellidos 
-     */
+    //Cambia los apellidos.
+     
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos.trim();
     }
 
-    /**
-     * Nombre completo: todos los nombres y todos los apellidos.
-     *
-     * @return 
-     */
+    //Nombre completo: todos los nombres y todos los apellidos.
+     
     public String getNombreCompleto() {
         return nombres + " " + apellidos;
     }
 
-    /**
-     * Nombre corto: primer nombre y primer apellido.
-     *
-     * @return 
-     */
+    //Nombre corto: primer nombre y primer apellido.
+     
     public String getNombreCorto() {
         return primeraPalabra(nombres) + " " + primeraPalabra(apellidos);
     }
 
-    /**
-     * Primer nombre seguido de todos los apellidos.
-     *
-     * @return 
-     */
+    //Primer nombre seguido de todos los apellidos.
+     
     public String getPrimerNombreYApellidos() {
         return primeraPalabra(nombres) + " " + apellidos;
     }

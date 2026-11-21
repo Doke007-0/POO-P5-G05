@@ -24,14 +24,8 @@ public class NotaControlador {
     private List<Llamada> listaLlamadas;
     private List<Operador> listaOperadores;
 
-    /**
-     * Constructor del controlador de notas.
-     *
-     * @param scanner         lector de entrada compartido del sistema
-     * @param listaNotas      lista global de notas de seguimiento
-     * @param listaLlamadas   lista global de llamadas registradas
-     * @param listaOperadores lista global de operadores registrados
-     */
+    //Constructor del controlador de notas.
+     
     public NotaControlador(
             Scanner scanner,
             List<NotaSeguimiento> listaNotas,
@@ -43,9 +37,8 @@ public class NotaControlador {
         this.listaOperadores = listaOperadores;
     }
 
-    /**
-     * Inicia el menú de administración de notas de seguimiento.
-     */
+    //Inicia el menú de administración de notas de seguimiento.
+     
     public void iniciarMenuNotas() {
         String codigoBuscado = vista.pedirCodigoLlamada();
         Llamada llamadaEncontrada;
@@ -78,11 +71,8 @@ public class NotaControlador {
         }
     }
 
-    /**
-     * Gestiona el proceso de registrar una nueva nota en una llamada específica.
-     *
-     * @param llamada llamada a la que se asociará la nota
-     */
+    //Gestiona el proceso de registrar una nueva nota en una llamada específica.
+     
     private void agregarNuevaNota(Llamada llamada) {
         if (listaOperadores.isEmpty()) {
             vista.mostrarMensajeError("No hay operadores registrados en el sistema.");
@@ -123,13 +113,8 @@ public class NotaControlador {
         vista.mostrarExitoNota(nuevaNota);
     }
 
-    /**
-     * Busca una llamada por su código o lanza una excepción si no existe.
-     *
-     * @param codigo código de la llamada (ej. LL-001)
-     * @return objeto Llamada encontrado
-     * @throws LlamadaNoEncontradaException si el código no coincide con ninguna llamada
-     */
+    //Busca una llamada por su código o lanza una excepción si no existe.
+     
     private Llamada buscarLlamadaPorCodigo(String codigo) throws LlamadaNoEncontradaException {
         for (Llamada ll : listaLlamadas) {
             if (ll.getCodigo().equalsIgnoreCase(codigo)) {
@@ -139,12 +124,8 @@ public class NotaControlador {
         throw new LlamadaNoEncontradaException("No se encontró ninguna llamada con el código " + codigo + ".");
     }
 
-    /**
-     * Filtra todas las notas registradas que pertenecen a una llamada.
-     *
-     * @param llamada llamada a consultar
-     * @return lista de notas asociadas a esa llamada
-     */
+    //Filtra todas las notas registradas que pertenecen a una llamada.
+     
     private List<NotaSeguimiento> obtenerNotasPorLlamada(Llamada llamada) {
         List<NotaSeguimiento> resultado = new ArrayList<>();
         for (NotaSeguimiento nota : listaNotas) {

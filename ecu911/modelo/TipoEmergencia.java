@@ -1,8 +1,7 @@
 package ecu911.modelo;
 
-/**
- * Tipos de emergencia que un operador puede registrar.
- */
+//Tipos de emergencia que un operador puede registrar.
+ 
 public enum TipoEmergencia {
     /** Emergencias de energía eléctrica. */
     ENERGIA("Energía"),
@@ -21,11 +20,8 @@ public enum TipoEmergencia {
         this.etiqueta = etiqueta;
     }
 
-    /**
-     * Texto que se muestra al usuario.
-     *
-     * @return etiqueta legible del tipo
-     */
+    //Texto que se muestra al usuario.
+     
     public String getEtiqueta() {
         return etiqueta;
     }

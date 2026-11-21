@@ -1,8 +1,7 @@
 package ecu911.modelo;
 
-/**
- * Turnos de trabajo de un operador.
- */
+//Turnos de trabajo de un operador.
+
 public enum Turno {
     MATUTINO("Matutino"),
 

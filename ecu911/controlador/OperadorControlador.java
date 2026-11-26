@@ -32,7 +32,6 @@ public class OperadorControlador {
     }
 
     //Inicia el menú de administración de operadores.
-    Inicia el menú de administración de operadores.
     public void iniciarMenuOperadores() {
 
         boolean regresar = false;

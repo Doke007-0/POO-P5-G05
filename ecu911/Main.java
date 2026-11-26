@@ -1,9 +1,9 @@
-package com.ecu911;
+package ecu911;
 
-import com.ecu911.controlador.ControladorPrincipal;
-import com.ecu911.excepcion.EntradaFinalizadaException;
-import com.ecu911.modelo.RegistroEmergencias;
-import com.ecu911.vista.Consola;
+import ecu911.controlador.ControladorPrincipal;
+import ecu911.excepcion.EntradaFinalizadaException;
+import ecu911.modelo.RegistroEmergencias;
+import ecu911.vista.Consola;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 
@@ -21,7 +21,7 @@ public final class Main {
     /**
      * Inicia la aplicación de consola.
      *
-     * @param args argumentos de línea de comandos (no se usan)
+     * 
      */
     public static void main(String[] args) {
         // Salida en UTF-8 para que se vean bien tildes y la letra ñ.

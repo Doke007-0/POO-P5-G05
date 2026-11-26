@@ -7,11 +7,6 @@ import ecu911.vista.Consola;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 
-/**
- * Punto de entrada del Sistema de Registro de Llamadas ECU 911.
- * Solo arma las piezas (modelo, consola y controlador principal) y las
- * pone en marcha; toda la lógica vive en las demás clases.
- */
 public final class Main {
 
     private Main() {

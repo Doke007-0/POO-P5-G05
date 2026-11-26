@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 
  /**Proporciona la fecha y hora del sistema. Toda fecha de llamadas y notas se
  obtiene aquí, nunca la ingresa el usuario.
- **//
+ **/
 public final class RelojSistema {
 
     /** Formato visible para el usuario: {@code dd/MM/yyyy - HH:mm}. */
